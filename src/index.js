@@ -24,6 +24,8 @@ function reducer(state = defaultState, action){
     case 'REMOVE_FROM_CART':
     let updatedCart = state.shoppingCart.filter(item => item.id !== action.payload.id) 
       return {...state, shoppingCart: updatedCart}
+    case 'SET_SHOPPINGCART':
+      return {...state, shoppingCart: action.payload}
     default:
       return state
   }

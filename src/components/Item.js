@@ -12,10 +12,37 @@ const Item = (props) => {
   };
 
   const cartClick = (song) => {
-    if (props.parent === "market"){
-      props.addToCart(song)
+    const token = localStorage.getItem('token')
+    if (props.parent === "market" && token){
+      fetch('http://localhost:3000/shoppingcart', {
+        method: 'POST',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({song_id: song.id})
+      }).then((response) => {
+        return response.json();
+      }).then((songData) => {
+        props.addToCart(songData)
+      })
+    } else if (props.parent === "cart" && token){
+      fetch('http://localhost:3000/shoppingcart', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({song_id: song.id})
+      }).then((response) => {
+        return response.json();
+      }).then((songData) => {
+        props.removeFromCart(songData)
+      })
     } else {
-      props.removeFromCart(song)
+      alert('please log in')
     }
   }
 
@@ -30,6 +57,12 @@ const Item = (props) => {
   )
 }
 
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  }
+}
+
 function mapDispatchToProps(dispatch){
   return {
     addToCart: (song) => {
@@ -41,4 +74,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(null, mapDispatchToProps)(Item);
+export default connect(mapStateToProps, mapDispatchToProps)(Item);

@@ -29,6 +29,7 @@ class App extends React.Component {
           alert(userData.errors)
         } else {
           this.props.setUser(userData.user)
+          this.props.setShoppingCart(userData.items)
           // this.setState({
           //   currentUser: userData
           // }, () => {
@@ -51,6 +52,7 @@ class App extends React.Component {
   setCurrentUser = (data) => {
     localStorage.setItem('token', data.token)
     this.props.setUser(data.user)
+    this.props.setShoppingCart(data.items)
     // this.setState({
     //   currentUser: data.user
     // })
@@ -68,7 +70,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <Header/>
@@ -100,6 +101,9 @@ function mapDispatchToProps(dispatch){
     },
     setUser: (user) => {
       dispatch({type: 'SET_USER', payload: user})
+    },
+    setShoppingCart: (items) => {
+      dispatch({type: 'SET_SHOPPINGCART', payload: items})
     }
   }
 }
