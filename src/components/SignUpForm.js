@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form, Button } from 'semantic-ui-react'
 
 class SignUpForm extends React.Component {
 
@@ -27,7 +28,7 @@ class SignUpForm extends React.Component {
         alert(data.errors)
       } else {
         this.props.setCurrentUser(data)
-        // this.props.history.push(`/home`) or profile page
+        this.props.history.push('/profile')
       }
     })
     } else {
@@ -43,16 +44,13 @@ class SignUpForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' placeholder='username' name='username' value={this.state.username} onChange={this.handleChange}/><br/>
-          <input type='password' placeholder='password' name='password' value={this.state.password} onChange={this.handleChange}/><br/>
-          <input type='password' placeholder='password confirmation' name='passwordconfirmation' value={this.state.passwordconfirmation} onChange={this.handleChange}/><br/>
-          <input type='text' placeholder='email' name='email' value={this.state.email} onChange={this.handleChange}/><br/>
-          <input type='submit'/>
-      </form>
-      </div>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Input type='text' placeholder='username' name='username' value={this.state.username} onChange={this.handleChange}/>
+        <Form.Input type='password' placeholder='password' name='password' value={this.state.password} onChange={this.handleChange}/>
+        <Form.Input type='password' placeholder='password confirmation' name='passwordconfirmation' value={this.state.passwordconfirmation} onChange={this.handleChange}/>
+        <Form.Input type='text' placeholder='email' name='email' value={this.state.email} onChange={this.handleChange}/>
+        <Button type='submit'>Sign Up</Button>
+      </Form>
     )
   }
 

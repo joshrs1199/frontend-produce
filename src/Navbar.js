@@ -1,23 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 const Navbar = (props) => {
   return (
-    <div className='navbar'>
-      <Link to='/marketplace'>
-        <button className='nav-button'>MarketPlace</button>
-      </Link>
-      <Link to='/contact'>
-        <button className='nav-button'>Contact</button>
-      </Link>
-      <Link to='/login'>
-        <button className='nav-button'>Login / Signup</button>
-      </Link>
-        <button className='nav-button' onClick={props.logOut}>Logout</button>
-      <Link to='/shoppingcart'>
-        <button className='nav-button'>ShoppingCart</button>
-      </Link>
-    </div>
+    <Menu>
+      <Menu.Item href='/marketplace'>MarketPlace</Menu.Item>
+      <Menu.Item href='/contact'>Contact</Menu.Item>
+      {props.currentUser ? <Menu.Item onClick={props.logOut}>Logout</Menu.Item> : <Menu.Item href='/login'>Login / Signup</Menu.Item>}
+      {props.currentUser ? <Menu.Item href='/shoppingcart'>ShoppingCart</Menu.Item> : null}
+      {props.currentUser ? <Menu.Item href='/profile'>Profile</Menu.Item> : null}
+    </Menu>
   )
 }
-export default Navbar;
+
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+export default connect(mapStateToProps)(Navbar);

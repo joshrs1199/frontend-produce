@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
 
@@ -24,7 +25,7 @@ class LoginForm extends React.Component {
         alert(data.errors)
       } else {
         this.props.setCurrentUser(data)
-        // this.props.history.push('/')
+        this.props.history.push('/')
       }
     })
   }
@@ -37,15 +38,12 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' placeholder='username' name='username' value={this.state.username} onChange={this.handleChange}/><br/>
-          <input type='password' placeholder='password' name='password' value={this.state.password} onChange={this.handleChange}/><br/>
-          <input type='submit'/>
-        </form>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Input type='text' placeholder='username' name='username' value={this.state.username} onChange={this.handleChange}/>
+        <Form.Input type='password' placeholder='password' name='password' value={this.state.password} onChange={this.handleChange}/>
+        <Button type='submit'>Login</Button>
         <p>Don't have an account? <Link to='/signup' className='sign-up'>Sign Up</Link></p>
-      </div>
+      </Form>
     )
   }
 
