@@ -1,11 +1,12 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 import { connect } from 'react-redux'
+import { Card, Button } from 'semantic-ui-react'
 
 const Item = (props) => {
   const opts = {
-    height: '150',
-    width: '150',
+    height: '100%',
+    width: '100%',
     playerVars: { // https://developers.google.com/youtube/player_parameters
       autoplay: 0
     }
@@ -47,12 +48,16 @@ const Item = (props) => {
   }
 
   return(
-    <div>
-      <h3>{props.song.name}</h3>
-      <YouTube videoId={props.song.videoid} opts={opts}/>
-      <p>Category: {props.song.category}</p>
-      <p>Price: {props.song.price} $</p>
-      <button onClick={() => cartClick(props.song)}>Add to Cart</button>
+    <div className='item-card'>
+      <Card>
+        <YouTube videoId={props.song.videoid} opts={opts}/>
+        <Card.Content>
+          <Card.Header>{props.song.name}</Card.Header>
+          <Card.Meta>{props.song.category}</Card.Meta>
+          {props.song.price}$
+        </Card.Content>
+        <Button onClick={() => cartClick(props.song)}>{props.parent === 'cart' ? 'Remove from Cart' : 'Add to Cart'}</Button>
+      </Card>
     </div>
   )
 }

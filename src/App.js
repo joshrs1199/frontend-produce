@@ -11,6 +11,7 @@ import Marketplace from './containers/Marketplace'
 import Contact from './components/Contact'
 import Header from './components/Header'
 import Shoppingcart from './containers/Shoppingcart'
+import Profile from './components/Profile'
 
 class App extends React.Component {
 
@@ -75,11 +76,12 @@ class App extends React.Component {
         <Header/>
         <Navbar logOut={this.logOut}/>
         <Switch>
+          <Route path='/profile' component={Profile}/>
           <Route path='/shoppingcart' component={Shoppingcart}/>
           <Route path='/contact' component={Contact}/>
           <Route path='/marketplace' component={Marketplace}/>
-          <Route path='/signup' render={() => <SignUpForm setCurrentUser={this.setCurrentUser}/>} />
-          <Route path='/login' render={() => <LoginForm setCurrentUser={this.setCurrentUser}/>} />
+          <Route path='/signup' render={(routerProps) => <SignUpForm setCurrentUser={this.setCurrentUser} {...routerProps}/>} />
+          <Route path='/login' render={(routerProps) => <LoginForm setCurrentUser={this.setCurrentUser} {...routerProps}/>} />
           <Route exact path='/' component={Home}/>
           <Route render={() => <Redirect to='/'/>}/>
         </Switch>
