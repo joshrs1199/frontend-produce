@@ -17,17 +17,33 @@ const Shoppingcart = (props) => {
 
   return (
     <Message>
-      <Message.Header>Cart Total: {CartPrice.length > 0 ? CartPrice.reduce(reducer) : null}$</Message.Header>
-      <br/>
-      <Button className='checkout-button'>Checkout</Button>
-      {songItem}
+      {props.cartClick ? 
+      props.history.push('/shoppingcart/checkout') 
+      : 
+      <div>
+        <Message.Header>Cart Total: {CartPrice.length > 0 ? CartPrice.reduce(reducer) : null}$</Message.Header>
+        <br/>
+        <Button onClick={props.changeClick}>Checkout</Button>
+        {songItem}
+      </div>
+      }
     </Message>
   )
 }
 
 function mapStateToProps(state){
   return {
-    shoppingCart: state.shoppingCart
+    shoppingCart: state.shoppingCart,
+    cartClick: state.cartClick
   }
 }
-export default connect(mapStateToProps)(Shoppingcart);
+
+function mapDispatchToProps(dispatch){
+  return {
+    changeClick: (click) => {
+      dispatch({type: 'CHANGE_CLICK', payload: click})
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shoppingcart);

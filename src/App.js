@@ -12,6 +12,7 @@ import Contact from './components/Contact'
 import Header from './components/Header'
 import Shoppingcart from './containers/Shoppingcart'
 import Profile from './components/Profile'
+import Checkout from './components/Checkout'
 
 class App extends React.Component {
 
@@ -76,8 +77,9 @@ class App extends React.Component {
         <Header/>
         <Navbar logOut={this.logOut}/>
         <Switch>
+          <Route path='/shoppingcart/checkout' render={(routerProps) => <Checkout {...routerProps}/>}/>
           <Route path='/profile' component={Profile}/>
-          <Route path='/shoppingcart' component={Shoppingcart}/>
+          <Route path='/shoppingcart' render={(routerProps) => <Shoppingcart {...routerProps}/>}/>
           <Route path='/contact' component={Contact}/>
           <Route path='/marketplace' component={Marketplace}/>
           <Route path='/signup' render={(routerProps) => <SignUpForm setCurrentUser={this.setCurrentUser} {...routerProps}/>} />

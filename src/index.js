@@ -11,7 +11,8 @@ import 'semantic-ui-css/semantic.min.css'
 const defaultState = {
   currentUser: null,
   songList: [],
-  shoppingCart: []
+  shoppingCart: [],
+  cartClick: false,
 }
 
 function reducer(state = defaultState, action){
@@ -27,6 +28,8 @@ function reducer(state = defaultState, action){
       return {...state, shoppingCart: updatedCart}
     case 'SET_SHOPPINGCART':
       return {...state, shoppingCart: action.payload}
+    case 'CHANGE_CLICK':
+      return {...state, cartClick: !state.cartClick}
     default:
       return state
   }
