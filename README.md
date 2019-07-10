@@ -3,14 +3,9 @@
 In this project I created a marketplace where music producers can sell their work. Customers will be able to have direct contact with the seller and vice versa.  
 
 ### Motivation
+Before coming to FlatIron I used to use the program FL studio to produce music. It was more of a hobby and mostly done on free time but, there was a point in time where I considered taking it more serious and turning that hobby into a career. To be able to sell your work people need to know who you are, nobody just goes around buying anything from people with little to no credibility. The purpose of my project was to give those with small support groups a place to grow and put their work out into the open without being shadowed by people with giant established bases. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
+### npm test
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
