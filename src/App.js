@@ -62,7 +62,6 @@ class App extends React.Component {
 
   logOut = () => {
     localStorage.removeItem('token')
-    //might notwork come and fix this hoe
     this.props.setUser(null)
     // this.setState({
     //   currentUser: null
