@@ -10,6 +10,8 @@ const Profile = () => {
       <input placeholder='Location' className='location'/>
       <br/>
       <input placeholder='Bio' className='bio'/>
+      <br/>
+      none of this shit works yet. lol
     </div>
   )
 }

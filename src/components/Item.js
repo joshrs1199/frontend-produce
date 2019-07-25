@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Card, Button } from 'semantic-ui-react'
 
 const Item = (props) => {
+
   const opts = {
     height: '100%',
     width: '100%',
@@ -64,7 +65,8 @@ const Item = (props) => {
 
 function mapStateToProps(state){
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    shoppingCart: state.shoppingCart
   }
 }
 
